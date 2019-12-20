@@ -1,18 +1,8 @@
 const puppeteer = require('puppeteer');
 
-//create a new browser page and set its conditions
-var browser = await puppeteer.launch({
-    headless: false
-});
-
-var page = await browser.newPage();
-
-await page.setViewport({
-    width: 1600,
-    height: 800
-});
-
 var results = {};
+var browser;
+var page;
 
 //end browser session
 let close = () => {
@@ -21,6 +11,18 @@ let close = () => {
 
 //start puppeteer
 let start = async () => {
+    
+    //create a new browser page and set its conditions
+    browser = await puppeteer.launch({
+        headless: false
+    });
+
+    page = await browser.newPage();
+
+    await page.setViewport({
+        width: 1600,
+        height: 800
+    });
 
     //navigate to CMS
     await page.goto('http://dev.cms.sjvassoc.com');
